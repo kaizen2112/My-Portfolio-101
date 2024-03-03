@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php"); // Redirect to login page
+    exit(); // Stop further execution
+}
+
+// If logout is clicked, destroy the session and redirect to login page
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
+
+// Rest of your admin.php code goes here
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +82,10 @@
                     echo "<td>".$row['name']."</td>";
                     echo "<td>".$row['subtitle']."</td>";
                     
-                    echo "<td><a href='delete_message.php?deleteid=".$row['id']."' class='button'>Delete</a></td>";
+                    echo "<td>
+                    <a href='updatehome.php?updateid=".$row['id']."' class='button'>Update</a>
+                    <a href='delete_message.php?deleteid=".$row['id']."' class='button'>Delete</a>
+                    </td>";
                     echo "</tr>";
                 }
             } else {
@@ -93,8 +118,10 @@
                     echo "<td>".$row['education1']."</td>";
                     echo "<td>".$row['description1']."</td>";
 
-                    
-                    echo "<td><a href='delete_message.php?deleteid=".$row['id']."' class='button'>Delete</a></td>";
+                    echo "<td>
+                    <a href='updateabout.php?updateid=".$row['id']."' class='button'>Update</a>
+                    <a href='delete_message.php?deleteid=".$row['id']."' class='button'>Delete</a>
+                    </td>";
                     echo "</tr>";
                 }
             } else {

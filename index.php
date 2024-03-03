@@ -152,7 +152,11 @@ if(isset($_POST['submit'])) {
   <!-- PROFILE SECTION -->
   <section id="profile">
     <div class="section__pic-container">
-      <img src="./assets/profilepicture.png" alt="Kazi Tasrif profile picture" id="profilepic" />
+      <img src="./assets/profilepicture.png" alt="Kazi Tasrif profile picture" id="profilepic" 
+      
+      
+      
+      />
     </div>
     <div class="section__text">
       <p class="section__text__p1">Hello, I'm</p>
@@ -371,7 +375,7 @@ if(isset($_POST['submit'])) {
         </div>
       </div>
     </div>
-    <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#project'" />
+    <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'" />
 
   </section>
 
@@ -418,7 +422,7 @@ if(isset($_POST['submit'])) {
         </div>
       </div>
     </div>
-    <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#project'" />
+    <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
   </section>
   
 
