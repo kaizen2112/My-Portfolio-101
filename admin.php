@@ -27,43 +27,83 @@ if (isset($_GET['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow: hidden;
+        }
+        .container.c0 .button,
+        .container.c1 .button {
+            padding: 8px 16px; /* Adjust padding as needed */
+            margin-right: 10px;
+            margin-bottom: 4px;
+        }
+        h2 {
+            margin-top: 0;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
         th, td {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 8px;
+            padding: 10px;
         }
         th {
             background-color: #f2f2f2;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .container {
-            margin: 20px auto;
-            max-width: 800px;
+            background-color: #f9f9f9;
         }
         .button {
             background-color: #4CAF50;
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            font-size: 14px;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .admin-header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .admin-header h1 {
+            margin: 0;
         }
     </style>
 </head>
 <body>
+    <div class="admin-header">
+        <h1>Admin Panel</h1>
+    </div>
     <div class="container c0">
         <h2>Home Information</h2>
         <table>
+            <!-- Table content here -->
             <tr>
                 <th>Name</th>
                 <th>Subtitle</th>
@@ -98,6 +138,8 @@ if (isset($_GET['logout'])) {
     <div class="container c1">
         <h2>About Information</h2>
         <table>
+            <!-- Table content here -->
+
             <tr>
                 <th>Experience</th>
                 <th>Education</th>
@@ -120,7 +162,7 @@ if (isset($_GET['logout'])) {
 
                     echo "<td>
                     <a href='updateabout.php?updateid=".$row['id']."' class='button'>Update</a>
-                    <a href='delete_message.php?deleteid=".$row['id']."' class='button'>Delete</a>
+                    <a href='delete_about.php?deleteid=".$row['id']."' class='button'>Delete</a>
                     </td>";
                     echo "</tr>";
                 }
@@ -129,11 +171,18 @@ if (isset($_GET['logout'])) {
             }
             $con->close();
             ?>
+
+
+
         </table>
+        <!-- <button id="addRowButton" class="button">Add Row</button> -->
+        <button class="btn btn-primary my-5 "><a href="adduser.php" class="text-light">Add user</a> </button>
     </div>
     <div class="container cN">
         <h2>Messages</h2>
         <table>
+            <!-- Table content here -->
+
             <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -162,7 +211,10 @@ if (isset($_GET['logout'])) {
             }
             $con->close();
             ?>
+
+
         </table>
     </div>
+    
 </body>
 </html>

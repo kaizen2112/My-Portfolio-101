@@ -182,6 +182,11 @@ section {
 .section__text p {
     font-weight: 600;
 }
+.section__text__p1 {
+    text-align: center;
+    margin: 1rem;
+     /* Add margin-top property */
+}
 
 .section__text__p1 {
     text-align: center;

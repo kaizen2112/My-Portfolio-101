@@ -45,6 +45,7 @@
     .about-containers {
       margin-top: 0;
     }
+    
   }
   
   @media screen and (max-width: 600px) {
@@ -92,6 +93,9 @@
       width: auto;
       height: 46vw;
       justify-content: center;
+    }
+    .section__text p1{
+      margin: 0;
     }
     .section__text__p2 {
       font-size: 1.25rem;

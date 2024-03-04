@@ -1,27 +1,28 @@
 <?php
 include 'connect.php';
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
   $name = $_POST['name'];
-  $email= $_POST['email'];
-  $phone= $_POST['phone'];
-  $message= $_POST['message'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $message = $_POST['message'];
 
 
   $sql = "insert into `messageme` (name, email, phone, message) values('$name', '$email', '$phone', '$message')";
 
   $result = mysqli_query($con, $sql);
 
-  if($result) {
-      echo "Data inserted successfully";
-      //header('location:display.php');
+  if ($result) {
+    echo "Data inserted successfully";
+    //header('location:display.php');
+  } else {
+    die(mysqli_error($con));
   }
-  else {
-      die(mysqli_error($con));
-  }
-
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -98,6 +99,10 @@ if(isset($_POST['submit'])) {
       
     } */
   </style>
+  
+  <!-- <script>
+    const ws = new WebSocket('ws://localhost:8080/chat');
+  </script> -->
 
 </head>
 
@@ -152,14 +157,10 @@ if(isset($_POST['submit'])) {
   <!-- PROFILE SECTION -->
   <section id="profile">
     <div class="section__pic-container">
-      <img src="./assets/profilepicture.png" alt="Kazi Tasrif profile picture" id="profilepic" 
-      
-      
-      
-      />
+      <img src="./assets/profilepicture.png" alt="Kazi Tasrif profile picture" id="profilepic" />
     </div>
     <div class="section__text">
-      <p class="section__text__p1">Hello, I'm</p>
+      <h1 class="section__text__p1">Hello, I'm</h1>
       <h1 class="title">
         <!-- NAME: KAZI TASRIF PHP -->
         <?php
@@ -174,7 +175,7 @@ if(isset($_POST['submit'])) {
         echo "$name";
         ?>
       </h1>
-      <p class="section__text__p2">
+      <h1 class="section__text__p2">
 
         <?php
         $sql = "Select * from `home`";
@@ -187,7 +188,7 @@ if(isset($_POST['submit'])) {
 
         echo "$subtitle";
         ?>
-      </p>
+      </h1>
 
       <div class="btn-container">
         <button class="btn btn-color-2" onclick="window.open('./assets/resume-example.pdf')">
@@ -208,7 +209,7 @@ if(isset($_POST['submit'])) {
   </section>
 
   <section id="about">
-    <p class="section__text__p1">Get To Know More</p>
+    <h4 class="section__text__p1">Get To Know More</h4>
     <h1 class="title">About Me</h1>
     <div class="section-container">
       <div class="section__pic-container">
@@ -223,16 +224,17 @@ if(isset($_POST['submit'])) {
             <p>
               <!-- 2+ years <br /> Frontend Development -->
               <?php
-              $sql = "Select * from `about`";
+              $sql = "SELECT * FROM `about`";
               $result = mysqli_query($con, $sql);
 
-              $row = mysqli_fetch_assoc($result);
+              while ($row = mysqli_fetch_assoc($result)) {
+                $id = $row['id'];
+                $exp1 = $row['experience1'];
 
-              $id = $row['id'];
-              $exp1 = $row['experience1'];
-
-              echo "$exp1";
+                echo "$exp1<br>";
+              }
               ?>
+
             </p>
           </div>
           <div class="details-container">
@@ -244,12 +246,12 @@ if(isset($_POST['submit'])) {
               $sql = "Select * from `about`";
               $result = mysqli_query($con, $sql);
 
-              $row = mysqli_fetch_assoc($result);
+              while($row = mysqli_fetch_assoc($result)) {
+                $id = $row['id'];
+                $edu1 = $row['education1'];
 
-              $id = $row['id'];
-              $edu1 = $row['education1'];
-
-              echo "$edu1";
+                echo "$edu1<br>";
+              }
               ?>
             </p>
           </div>
@@ -257,20 +259,26 @@ if(isset($_POST['submit'])) {
 
         <div class="text-container">
           <p>
-          <?php
-        $sql = "Select * from `about`";
-        $result = mysqli_query($con, $sql);
+            <?php
+            $sql = "Select * from `about`";
+            $result = mysqli_query($con, $sql);
 
-        $row = mysqli_fetch_assoc($result);
+            while($row = mysqli_fetch_assoc($result)){
+              $id = $row['id'];
+              $des1 = $row['description1'];
 
-        $id = $row['id'];
-        $des1 = $row['description1'];
+              echo "$des1";
 
-        echo "$des1";
-        echo "$des1";
+            }
 
-        ?>
-          
+            // $id = $row['id'];
+            // $des1 = $row['description1'];
+
+            // echo "$des1";
+            // echo "$des1";
+
+            ?>
+
           </p>
         </div>
       </div>
@@ -280,7 +288,7 @@ if(isset($_POST['submit'])) {
   </section>
 
   <section id="experience">
-    <p class="section__text__p1">Explore My</p>
+    <h4 class="section__text__p1">Explore My</h4>
     <h1 class="title">Experience</h1>
     <div class="experience-details-container">
       <div class="about-containers">
@@ -380,7 +388,7 @@ if(isset($_POST['submit'])) {
   </section>
 
   <section id="projects">
-    <p class="section__text__p1">Browse My Recent</p>
+    <h4 class="section__text__p1">Browse My Recent</h4>
     <h1 class="title">Projects</h1>
     <div class="experience-details-container">
       <div class="about-containers">
@@ -424,12 +432,12 @@ if(isset($_POST['submit'])) {
     </div>
     <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
   </section>
-  
 
-  
+
+
 
   <section id="contact">
-    <h1 class="section__text__p1">Get in Touch</h1>
+    <h1 class="section__text__p1"><strong>Get in Touch</strong></h1>
 
     <div class="contact-form">
       <form id="contact-form" action="#" method="post">
@@ -453,8 +461,8 @@ if(isset($_POST['submit'])) {
       </form>
     </div>
 
-    
-    
+
+
 
     <h1 class="title">Contact Me</h1>
     <div class="contact-info-upper-container">
